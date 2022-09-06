@@ -1,6 +1,6 @@
 const display = document.querySelector(".display");
 const controlButtons = document.querySelector(".controls").children;
-const allSymbols = ["+", "-", "X", "+", "%", "C", "="];
+const allSymbols = ["+", "-", "X", "+", "%", "÷", "="];
 
 let firstValue = "";
 let secondValue = "";
@@ -25,6 +25,9 @@ for (let button of controlButtons) {
   button.addEventListener("click", () => {
     const { innerText: btnValue } = button;
     const btnValueIsSymbol = allSymbols.includes(btnValue);
+    if (btnValue === "") {
+      return (display.innerText = display.innerText.slice(0, -1));
+    }
 
     if (!secondValue && btnValue === "=") return null;
     if (btnValue === "C") {
